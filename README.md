@@ -8,7 +8,7 @@ This is a best practice for converting Svelte components to Web Components.
 
 ```bash
 bun install
-bun build:website
+bun run build:website
 ```
 
 you will see the whole demo website is ready to launch under dir `dist`.
@@ -32,7 +32,7 @@ All the js files under folder `dist/wc` are all ready to go as Web Components.
 
 ```bash
 bun install
-bun build:wc
+bun run build:wc
 ```
 
 ```

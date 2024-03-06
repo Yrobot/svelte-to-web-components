@@ -5,16 +5,24 @@ import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    lib: {
-      entry: {
+    rollupOptions: {
+      input: {
+        app: "./index.html",
+        // web components
         "my-badge": "src/components/my-badge.svelte",
         "my-button": "src/components/my-button.svelte",
         "my-dropdown": "src/components/my-dropdown.svelte",
       },
-      formats: ["es"],
-      fileName: (format, entryName) => `${entryName}.js`,
+      output: {
+        entryFileNames: (chunkInfo) => {
+          return `${chunkInfo.name?.includes("-") ? "wc" : "assets"}/${
+            chunkInfo.name
+          }.js`;
+        },
+        assetFileNames: `assets/[name].[ext]`,
+      },
     },
-    outDir: "web-components",
+    outDir: "dist",
   },
   plugins: [
     svelte({

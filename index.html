@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Svelte + TS</title>
+    <link rel="stylesheet" href="./src/app.css" />
   </head>
   <body>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="./src/components/my-badge.svelte"></script>
+    <script type="module" src="./src/components/my-button.svelte"></script>
+    <script type="module" src="./src/components/my-dropdown.svelte"></script>
     <my-badge>Badge</my-badge>
     <my-button>Button</my-button>
+    <my-dropdown content='["content1","content2"]'>Dropdown</my-dropdown>
   </body>
 </html>

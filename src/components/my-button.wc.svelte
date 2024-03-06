@@ -6,7 +6,9 @@
 
 <span class="btn"><slot /></span>
 
-<style>
+<style lang="postcss">
+  @tailwind components;
+  @tailwind utilities;
   .btn {
     display: inline-flex;
     height: 3rem;

@@ -1,6 +1,16 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+import fs from "node:fs";
+
+// {filename: path}
+const getWCEntries = (dir: string): Record<string, string> => {
+  const files = fs.readdirSync(dir).filter((file) => file.endsWith(".svelte"));
+  return files.reduce(
+    (pre = {}, file) => ({ ...pre, [file.split(".")[0]]: `${dir}/${file}` }),
+    {}
+  );
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,9 +19,7 @@ export default defineConfig({
       input: {
         app: "./index.html",
         // web components
-        "my-badge": "src/components/my-badge.svelte",
-        "my-button": "src/components/my-button.svelte",
-        "my-dropdown": "src/components/my-dropdown.svelte",
+        ...getWCEntries("src/components"),
       },
       output: {
         entryFileNames: (chunkInfo) => {
